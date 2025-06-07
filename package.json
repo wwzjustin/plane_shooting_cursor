@@ -1,0 +1,36 @@
+{
+  "name": "3d-plane-game",
+  "version": "1.0.0",
+  "description": "A 3D aerial combat game built with Three.js featuring multi-weapon combat system and immersive audio",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "serve": "vite preview --port 3000",
+    "start": "npm run dev",
+    "deploy": "npm run build && gh-pages -d dist"
+  },
+  "keywords": [
+    "threejs",
+    "3d",
+    "game",
+    "javascript",
+    "webgl",
+    "aerial-combat",
+    "audio"
+  ],
+  "author": "3D Plane Game Team",
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^5.0.0",
+    "gh-pages": "^6.0.0"
+  },
+  "dependencies": {
+    "three": "^0.160.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+} 

@@ -1,0 +1,440 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+}
+
+#game-container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+#controls-ui {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.4;
+    max-width: 300px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#controls-ui h3 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    color: #00ff88;
+    text-shadow: 0 0 5px rgba(0, 255, 136, 0.5);
+}
+
+#controls-ui .control-group {
+    margin-bottom: 8px;
+}
+
+#controls-ui .control-key {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+    margin-right: 5px;
+    min-width: 20px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Weapon UI Styling - Override combat/index.js styles */
+#weapon-info {
+    /* Keep the original positioning from combat/index.js */
+}
+
+#weapon-info .weapon-header {
+    margin-bottom: 10px;
+}
+
+#weapon-info .weapon-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#weapon-info .weapon-description {
+    font-size: 12px;
+    color: #cccccc;
+    font-style: italic;
+}
+
+#weapon-info .weapon-ammo {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.weapon-reload-bar {
+    margin-top: 10px;
+}
+
+.reload-label {
+    font-size: 12px;
+    color: #ffff00;
+    margin-bottom: 5px;
+}
+
+.reload-bar-container {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.reload-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ff4444, #ffff44, #44ff44);
+    width: 0%;
+    transition: width 0.1s ease;
+}
+
+/* Weapon Selection Panel */
+#weapon-selection {
+    position: fixed;
+    top: 120px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    max-width: 250px;
+    z-index: 1000;
+}
+
+.weapon-selection-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #00ff88;
+    text-align: center;
+    margin-bottom: 10px;
+    text-shadow: 0 0 5px rgba(0, 255, 136, 0.5);
+}
+
+.weapon-option {
+    display: flex;
+    align-items: center;
+    padding: 6px 8px;
+    margin-bottom: 3px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+}
+
+.weapon-option:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.weapon-option.active {
+    background: rgba(255, 255, 255, 0.2);
+    border-left: 3px solid;
+}
+
+.weapon-key {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.3);
+    color: #000;
+    padding: 3px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+    margin-right: 8px;
+    min-width: 16px;
+    text-align: center;
+    font-size: 11px;
+}
+
+.weapon-info {
+    flex: 1;
+}
+
+.weapon-option-name {
+    display: block;
+    font-weight: bold;
+    font-size: 12px;
+    margin-bottom: 1px;
+}
+
+.weapon-stats {
+    display: block;
+    font-size: 10px;
+    color: #cccccc;
+}
+
+.weapon-controls {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 10px;
+    line-height: 1.3;
+}
+
+.weapon-controls div {
+    margin-bottom: 2px;
+}
+
+.weapon-controls strong {
+    color: #00ff88;
+}
+
+/* Game Screen Styling */
+.game-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    font-family: 'Arial', sans-serif;
+}
+
+.game-screen.overlay {
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+}
+
+.screen-content {
+    text-align: center;
+    max-width: 600px;
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid #00ff88;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+}
+
+.game-title {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #00ff88;
+    text-shadow: 0 0 20px rgba(0, 255, 136, 0.8);
+    margin-bottom: 20px;
+    letter-spacing: 3px;
+}
+
+.game-subtitle {
+    font-size: 1.2rem;
+    color: #ffffff;
+    margin-bottom: 40px;
+    opacity: 0.9;
+}
+
+.victory-title {
+    font-size: 3rem;
+    color: #00ff00;
+    text-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+    margin-bottom: 20px;
+}
+
+.victory-subtitle {
+    font-size: 1.1rem;
+    color: #ffffff;
+    margin-bottom: 30px;
+}
+
+.game-over-title {
+    font-size: 3rem;
+    color: #ff0000;
+    text-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+    margin-bottom: 20px;
+}
+
+.game-over-subtitle {
+    font-size: 1.1rem;
+    color: #ffffff;
+    margin-bottom: 30px;
+}
+
+.menu-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.menu-btn {
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.menu-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #00ff88;
+    color: #00ff88;
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+}
+
+.menu-btn.primary {
+    background: rgba(0, 255, 136, 0.2);
+    border-color: #00ff88;
+    color: #00ff88;
+}
+
+.menu-btn.primary:hover {
+    background: rgba(0, 255, 136, 0.4);
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+}
+
+/* Instructions Panel */
+.instructions-panel {
+    text-align: left;
+    background: rgba(0, 0, 0, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.instructions-panel h3 {
+    color: #00ff88;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.instruction-section {
+    margin-bottom: 20px;
+}
+
+.instruction-section h4 {
+    color: #ffffff;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.instruction-section p {
+    color: #cccccc;
+    margin: 5px 0;
+    font-size: 0.9rem;
+}
+
+.instruction-section strong {
+    color: #00ff88;
+}
+
+/* Stats Container */
+.stats-container {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-item:last-child {
+    border-bottom: none;
+}
+
+.stat-item.bonus {
+    color: #00ff88;
+}
+
+.stat-label {
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+.stat-value {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #00ff88;
+}
+
+.stat-item.bonus .stat-value {
+    color: #ffff00;
+}
+
+/* Settings Container */
+.settings-container {
+    text-align: left;
+    margin: 20px 0;
+}
+
+.setting-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.setting-item:last-child {
+    border-bottom: none;
+}
+
+.setting-item label {
+    color: #ffffff;
+    font-size: 1rem;
+    flex: 1;
+}
+
+.setting-item input[type="range"] {
+    flex: 2;
+    margin: 0 15px;
+    accent-color: #00ff88;
+}
+
+.setting-item span {
+    color: #00ff88;
+    font-weight: bold;
+    min-width: 50px;
+    text-align: right;
+}
+
+.toggle-btn {
+    padding: 8px 16px;
+    background: rgba(255, 0, 0, 0.2);
+    color: #ff0000;
+    border: 2px solid #ff0000;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    min-width: 60px;
+}
+
+.toggle-btn.active {
+    background: rgba(0, 255, 0, 0.2);
+    color: #00ff00;
+    border-color: #00ff00;
+}
+
+.toggle-btn:hover {
+    opacity: 0.8;
+} 
