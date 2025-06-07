@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "serve": "vite preview --port 3000",
     "start": "npm run dev",
-    "deploy": "npm run build && gh-pages -d dist"
+    "deploy": "NODE_ENV=production npm run build && gh-pages -d dist"
   },
   "keywords": [
     "threejs",
